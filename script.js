@@ -97,7 +97,199 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollProgress();
     initBackToTop();
     initCounterAnimation();
+    initMobileMenu();
+    initThemeToggle();
+    initProjectFilters();
+    initSkillsChart();
+    initContactForm();
 });
+
+// ===========================
+// MOBILE MENU
+// ===========================
+const initMobileMenu = () => {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (!mobileMenuBtn || !navLinks) return;
+
+    const closeMenu = () => {
+        mobileMenuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.classList.toggle('active');
+        navLinks.classList.toggle('active');
+
+        // Lock/unlock body scroll
+        if (navLinks.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+};
+
+// ===========================
+// DARK MODE TOGGLE
+// ===========================
+const initThemeToggle = () => {
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    if (!themeToggle) return;
+
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        html.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        html.setAttribute('data-theme', 'dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+};
+
+// ===========================
+// PROJECT FILTERS
+// ===========================
+const initProjectFilters = () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card-new');
+
+    if (filterBtns.length === 0 || projectCards.length === 0) return;
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+
+            // Filter projects
+            projectCards.forEach(card => {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    });
+};
+
+// ===========================
+// SKILLS RADAR CHART
+// ===========================
+const initSkillsChart = () => {
+    const canvas = document.getElementById('skillsChart');
+    if (!canvas || typeof Chart === 'undefined') return;
+
+    const ctx = canvas.getContext('2d');
+
+    // Get theme colors
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const textColor = isDark ? '#f1f5f9' : '#0f172a';
+    const gridColor = isDark ? 'rgba(241, 245, 249, 0.1)' : 'rgba(15, 23, 42, 0.1)';
+
+    // Use config data if available
+    const skillsData = window.PORTFOLIO_SKILLS_DATA || {
+        labels: ['JavaScript', 'Problem Solving', 'HTML/CSS', 'Git', 'Python', 'Backend Concepts'],
+        data: [75, 70, 80, 65, 55, 45]
+    };
+
+    new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: skillsData.labels,
+            datasets: [{
+                label: 'Current Level',
+                data: skillsData.data,
+                backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                borderColor: 'rgba(99, 102, 241, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(99, 102, 241, 1)',
+                pointBorderColor: '#fff',
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        stepSize: 20,
+                        color: textColor,
+                        backdropColor: 'transparent'
+                    },
+                    grid: {
+                        color: gridColor
+                    },
+                    pointLabels: {
+                        color: textColor,
+                        font: {
+                            size: 12,
+                            weight: '500'
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+};
+
+// ===========================
+// CONTACT FORM
+// ===========================
+const initContactForm = () => {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+        const submitBtn = form.querySelector('.contact-submit');
+        const originalText = submitBtn.innerHTML;
+
+        // Show loading state
+        submitBtn.innerHTML = '<span>Sending...</span>';
+        submitBtn.disabled = true;
+
+        // Form will submit naturally to Formspree
+        // Reset button after a delay (in case form stays on page)
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }, 3000);
+    });
+};
 
 // ===========================
 // TYPING EFFECT
@@ -106,7 +298,8 @@ const initTypingEffect = () => {
     const typingElement = document.querySelector('.typing-text');
     if (!typingElement) return;
 
-    const words = ["JavaScript", "Problem Solving", "Backend Dev", "Engineering"];
+    // Use config data if available, otherwise use defaults
+    const words = window.PORTFOLIO_TYPING_TEXTS || ["JavaScript", "Problem Solving", "Backend Dev", "Engineering"];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;

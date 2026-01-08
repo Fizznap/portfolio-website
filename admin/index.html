@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-accent: #6366f1;
+            --primary-dark: #4f46e5;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --border-light: #e2e8f0;
+            --success: #10b981;
+            --danger: #ef4444;
+            --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        header {
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .text-muted {
+            color: var(--text-secondary);
+        }
+
+        .editor-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-light);
+        }
+
+        .editor-section h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary-accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-accent);
+            color: var(--primary-accent);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 8px 14px;
+            font-size: 13px;
+        }
+
+        .array-item {
+            background: var(--bg-main);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-light);
+        }
+
+        .array-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .array-item-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .array-item-remove {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .admin-actions {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--success);
+            color: white;
+            padding: 14px 20px;
+            text-align: center;
+            font-weight: 500;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .status-bar.show {
+            transform: translateY(0);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-accent);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-item {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: var(--bg-main);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+        }
+
+        .skill-item input[type="text"] {
+            flex: 1;
+        }
+
+        .skill-item input[type="number"] {
+            width: 70px;
+        }
+
+        @media (max-width: 768px) {
+            .admin-actions {
+                bottom: 20px;
+                right: 20px;
+                flex-direction: column;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-container">
+        <header>
+            <h1>📝 Portfolio Admin</h1>
+            <p class="text-muted">Edit your portfolio content. Changes are saved to JSON for deployment.</p>
+        </header>
+
+        <!-- Hero Section -->
+        <div class="editor-section" id="hero-editor">
+            <h2>Hero Section</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label">Your Name</label>
+                    <input type="text" class="form-input" id="hero-name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Badge Text</label>
+                    <input type="text" class="form-input" id="hero-badge">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-input form-textarea" id="hero-description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Typing Sequences (one per line)</label>
+                    <textarea class="form-input form-textarea" id="hero-typing"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Quote</label>
+                    <textarea class="form-input form-textarea" id="hero-quote"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="editor-section" id="about-editor">
+            <h2>About Section</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-input" id="about-title">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Subtitle</label>
+                    <textarea class="form-input form-textarea" id="about-subtitle"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="editor-section" id="skills-editor">
+            <h2>Skills Chart</h2>
+            <div class="skills-grid" id="skills-list"></div>
+            <button class="btn btn-secondary" id="add-skill" style="margin-top: 16px;">+ Add Skill</button>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="editor-section" id="projects-editor">
+            <h2>Projects</h2>
+            <div id="projects-list"></div>
+            <button class="btn btn-secondary" id="add-project">+ Add Project</button>
+        </div>
+
+        <!-- Journey Section -->
+        <div class="editor-section" id="journey-editor">
+            <h2>Journey Timeline</h2>
+            <div id="journey-list"></div>
+            <button class="btn btn-secondary" id="add-journey">+ Add Milestone</button>
+        </div>
+
+        <!-- Social Links -->
+        <div class="editor-section" id="social-editor">
+            <h2>Social Links & Settings</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label">GitHub URL</label>
+                    <input type="text" class="form-input" id="social-github">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">LinkedIn URL</label>
+                    <input type="text" class="form-input" id="social-linkedin">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" id="social-email">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Formspree ID</label>
+                    <input type="text" class="form-input" id="formspree-id" placeholder="f/xxxxxxxx">
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-actions">
+            <button class="btn btn-secondary" id="preview-btn">👁️ Preview</button>
+            <button class="btn btn-primary" id="save-btn">💾 Save & Download JSON</button>
+        </div>
+
+        <div class="status-bar" id="status-bar">
+            <span id="status-message"></span>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>

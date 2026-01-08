@@ -13,6 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -52,7 +53,22 @@
                 <a href="#journey" class="nav-link">Journey</a>
             </div>
             <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <path
+                            d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
                 <a href="#contact" class="nav-cta">Let's Connect</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <span class="menu-icon"></span>
+                </button>
             </div>
         </div>
     </nav>
@@ -111,6 +127,10 @@
         <!-- Decorative gradient orb -->
         <div class="hero-orb hero-orb-1"></div>
         <div class="hero-orb hero-orb-2"></div>
+        <!-- Floating JS Badge -->
+        <div class="floating-badge badge-js">
+            <span class="js-text">JS</span>
+        </div>
     </section>
 
     <!-- SCROLL INDICATOR -->
@@ -220,6 +240,20 @@
         </div>
     </section>
 
+    <!-- SKILLS RADAR CHART -->
+    <section class="section skills-chart-section">
+        <div class="section-container-full">
+            <div class="skills-header">
+                <span class="section-badge">Skills</span>
+                <h2 class="section-title-center">Technical Proficiency</h2>
+                <p class="skills-subtitle">Visual representation of my current skill levels across different areas.</p>
+            </div>
+            <div class="chart-container">
+                <canvas id="skillsChart"></canvas>
+            </div>
+        </div>
+    </section>
+
     <!-- LEARNING IN PUBLIC -->
     <section class="section proof-section">
         <div class="section-container-full">
@@ -294,9 +328,17 @@
                     application structure.</p>
             </div>
 
+            <!-- Project Filters -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="python">Python</button>
+                <button class="filter-btn" data-filter="web">Web Dev</button>
+                <button class="filter-btn" data-filter="app">Apps</button>
+            </div>
+
             <div class="projects-grid-new">
                 <!-- Project 1: To-Do List -->
-                <div class="project-card-new">
+                <div class="project-card-new" data-category="python">
                     <div class="project-tags">
                         <span class="tag tag-python">Python</span>
                         <span class="tag tag-manual">Manual Build</span>
@@ -317,7 +359,7 @@
                 </div>
 
                 <!-- Project 2: PingTab -->
-                <div class="project-card-new">
+                <div class="project-card-new" data-category="web">
                     <div class="project-tags">
                         <span class="tag tag-web">Web Dev</span>
                         <span class="tag tag-ai">AI-Assisted</span>
@@ -340,7 +382,7 @@
                 </div>
 
                 <!-- Project 3: Learning in Public UI -->
-                <div class="project-card-new">
+                <div class="project-card-new" data-category="app">
                     <div class="project-tags">
                         <span class="tag tag-app">App</span>
                         <span class="tag tag-ai">AI-Assisted</span>
@@ -421,6 +463,29 @@
                 </p>
             </div>
 
+            <!-- Contact Form -->
+            <form id="contact-form" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required class="form-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Your Message" rows="4" required
+                        class="form-input form-textarea"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary contact-submit">
+                    <span>Send Message</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                    </svg>
+                </button>
+                <p class="form-note">I'll get back to you as soon as possible.</p>
+            </form>
+
             <!-- Social Links -->
             <div class="footer-social">
                 <a href="https://github.com/Fizznap" target="_blank" rel="noopener noreferrer" class="social-link">
@@ -466,6 +531,8 @@
     </button>
 
     <script src="script.js"></script>
+    <script src="js/data-loader.js"></script>
+    <script src="js/portfolio-renderer.js"></script>
 </body>
 
 </html>

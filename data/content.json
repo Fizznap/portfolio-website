@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "siteTitle": "Smit Shinde - Computer Science Engineering Student",
+    "siteDescription": "Computer Science Engineering undergraduate focused on building strong fundamentals in programming, data structures, and backend development.",
+    "favicon": "/favicon.ico",
+    "updatedAt": "2026-01-08"
+  },
+  "hero": {
+    "name": "Smit Shinde",
+    "badge": "Computer Science Engineering",
+    "typingSequences": [
+      "JavaScript",
+      "Problem Solving",
+      "Backend Dev",
+      "Engineering"
+    ],
+    "description": "Focused on understanding how things work under the hood, not chasing trends. Learning in public, building in private.",
+    "quote": "This portfolio documents learning in progress — not finished claims.",
+    "image": {
+      "url": "./portrait.jpg",
+      "alt": "Smit Shinde"
+    },
+    "stats": [
+      { "label": "Started B.Tech", "value": "2024", "target": 2024 },
+      { "label": "Primary Focus", "value": "JS", "target": null },
+      { "label": "% Learning", "value": "100", "target": 100 }
+    ]
+  },
+  "about": {
+    "title": "Foundations First",
+    "subtitle": "Computer Science Engineering undergraduate focused on building a strong foundation before specialization.",
+    "features": [
+      {
+        "icon": "layers",
+        "title": "Deep Understanding",
+        "description": "Rather than rushing into frameworks, I prioritize understanding how things work under the hood."
+      },
+      {
+        "icon": "clock",
+        "title": "Consistent Progress",
+        "description": "I believe in clarity over clever hacks, fundamentals over tools, and consistent progress over fast progress."
+      },
+      {
+        "icon": "book",
+        "title": "Learning in Progress",
+        "description": "This portfolio reflects genuine learning, not inflated expertise. Every line of code teaches something new."
+      }
+    ]
+  },
+  "focus": {
+    "title": "Key Focus Areas",
+    "subtitle": "Core competencies I'm actively developing for software engineering.",
+    "areas": [
+      {
+        "id": "focus-1",
+        "title": "JavaScript Fundamentals",
+        "items": [
+          "Execution context & scope",
+          "Closures & functions",
+          "Arrays, objects, and methods",
+          "Asynchronous JavaScript (callbacks, promises, async/await)"
+        ]
+      },
+      {
+        "id": "focus-2",
+        "title": "Problem Solving",
+        "items": [
+          "Step-by-step problem breakdown",
+          "Time & space complexity basics",
+          "Recursion fundamentals",
+          "Pattern recognition in DSA problems"
+        ]
+      },
+      {
+        "id": "focus-3",
+        "title": "Backend Concepts",
+        "badge": "Learning Stage",
+        "items": [
+          "Request–response flow",
+          "REST API basics",
+          "Node.js & Express (used during AI-assisted builds)",
+          "Understanding application structure"
+        ]
+      },
+      {
+        "id": "focus-4",
+        "title": "Engineering Discipline",
+        "items": [
+          "Git & GitHub for version control",
+          "Linux environment usage",
+          "Writing clean, documented code",
+          "Iterative improvement mindset"
+        ]
+      }
+    ]
+  },
+  "learning": {
+    "title": "Learning in Public",
+    "subtitle": "I actively document my learning through structured GitHub repositories. These repositories focus on concept clarity, not finished products.",
+    "columns": [
+      {
+        "title": "JavaScript Fundamentals",
+        "description": "I'm focused on understanding the core mechanics of JavaScript — how the language works, not just how to use frameworks. The repositories below contain small, focused examples exploring execution context, control flow, scope & closures, asynchronous patterns, and fundamental code behavior.",
+        "links": [
+          {
+            "title": "JavaScript Fundamentals",
+            "url": "https://github.com/Fizznap/javascript-fundamentals",
+            "description": "Focused examples exploring scope, closures, arrays & objects, and basic language behavior."
+          }
+        ]
+      },
+      {
+        "title": "Problem Solving & DSA (JavaScript Based)",
+        "description": "Alongside language fundamentals, I'm building problem-solving skills using JavaScript. My process emphasizes understanding constraints, iterative improvement, and analyzing time & space complexity.",
+        "links": [
+          {
+            "title": "DSA Practice in JavaScript",
+            "url": "https://github.com/Fizznap/javascript-fundamentals/tree/main/dsa",
+            "description": "Patterns, recursion, array & string exercises using clean, readable code."
+          },
+          {
+            "title": "Problem-Solving Notes",
+            "url": "https://github.com/Fizznap/javascript-fundamentals/tree/main/problem-notes",
+            "description": "Approach explanations with edge cases, reasoning, and complexity insights."
+          }
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Technical Proficiency",
+    "subtitle": "Visual representation of my current skill levels across different areas.",
+    "items": [
+      { "name": "JavaScript", "level": 75 },
+      { "name": "Problem Solving", "level": 70 },
+      { "name": "HTML/CSS", "level": 80 },
+      { "name": "Git", "level": 65 },
+      { "name": "Python", "level": 55 },
+      { "name": "Backend Concepts", "level": 45 }
+    ]
+  },
+  "projects": {
+    "title": "What I've Built",
+    "subtitle": "Hands-on projects focused on learning fundamentals and understanding application structure.",
+    "items": [
+      {
+        "id": "project-1",
+        "title": "To-Do List Application",
+        "description": "A desktop to-do app built with Python and Tkinter. Focused on understanding GUI programming and event-driven logic.",
+        "category": "python",
+        "tags": ["Python", "Tkinter"],
+        "meta": "Fundamentals",
+        "aiAssisted": false,
+        "links": {
+          "github": "#",
+          "demo": null
+        }
+      },
+      {
+        "id": "project-2",
+        "title": "PingTab — ISP Website",
+        "description": "A website for a local broadband service. Used AI assistance to understand how real-world websites are structured.",
+        "category": "web",
+        "tags": ["HTML", "CSS", "JavaScript"],
+        "meta": "Real-World",
+        "aiAssisted": true,
+        "links": {
+          "github": "#",
+          "demo": "#"
+        }
+      },
+      {
+        "id": "project-3",
+        "title": "Swift Sync — Learning in Public UI",
+        "description": "Personal productivity and habit-tracking app with AI-assisted development. Exploring modern UI patterns, state management, and learning openly.",
+        "category": "app",
+        "tags": ["React Native", "Expo"],
+        "meta": "Learning",
+        "aiAssisted": true,
+        "links": {
+          "github": "#",
+          "demo": null
+        }
+      }
+    ]
+  },
+  "journey": {
+    "title": "My Path",
+    "subtitle": "From computer science fundamentals to software engineering.",
+    "milestones": [
+      {
+        "year": "2024",
+        "title": "B.Tech Computer Science",
+        "org": "Universal Skilltech University",
+        "description": "Building strong foundations in programming and computer science. Focused on JavaScript fundamentals and Data Structures.",
+        "status": "current"
+      },
+      {
+        "year": "2025",
+        "title": "Campus Ambassador",
+        "org": "Kreo",
+        "description": "Student outreach initiatives. Built discipline, consistency, and responsibility through coordination work.",
+        "status": "current"
+      },
+      {
+        "year": "2023",
+        "title": "Self-Initiated Learning",
+        "org": "JavaScript & Problem Solving",
+        "description": "Focused self-study on core JavaScript concepts, execution context, closures, and problem-solving patterns.",
+        "status": "ongoing"
+      },
+      {
+        "year": "Past",
+        "title": "Freelance Creative Work",
+        "org": "Game Art & Design",
+        "description": "Client projects with deadlines. Learned requirement analysis, iterative feedback, and attention to detail.",
+        "status": null
+      }
+    ]
+  },
+  "social": {
+    "github": "https://github.com/Fizznap",
+    "linkedin": "https://www.linkedin.com/in/fizznap",
+    "email": "smit@example.com"
+  },
+  "contact": {
+    "title": "Let's Build Something Together",
+    "subtitle": "Open to learning opportunities, internships, and conversations about code.",
+    "formspreeId": "YOUR_FORM_ID"
+  }
+}
