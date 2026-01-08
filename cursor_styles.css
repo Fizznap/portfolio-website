@@ -1,0 +1,71 @@
+/* ===========================
+   CUSTOM CURSOR
+   =========================== */
+.cursor-dot {
+    width: 5px;
+    height: 5px;
+    background-color: var(--primary-accent);
+}
+
+.cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--primary-accent);
+}
+
+.cursor-dot,
+.cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+    transition: transform 0.1s;
+    /* Smooth visual update for outline */
+}
+
+.cursor-dot {
+    transition: none;
+    /* Instant follow for dot */
+}
+
+body:hover .cursor-dot,
+body:hover .cursor-outline {
+    opacity: 1;
+}
+
+/* Hover state for links/buttons */
+body.hovering .cursor-dot {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: var(--secondary-accent);
+}
+
+body.hovering .cursor-outline {
+    transform: translate(-50%, -50%) scale(1.5);
+    border-color: var(--secondary-accent);
+    background-color: rgba(250, 204, 21, 0.1);
+}
+
+/* Hide default cursor on devices that support hover */
+@media (hover: hover) and (pointer: fine) {
+
+    body,
+    a,
+    button,
+    .btn {
+        cursor: none;
+    }
+}
+
+/* ===========================
+   SCROLL SPY ACTIVE LINK
+   =========================== */
+.nav-link.active-scroll {
+    color: var(--primary-accent);
+}
+
+.nav-link.active-scroll::after {
+    width: 100%;
+}
